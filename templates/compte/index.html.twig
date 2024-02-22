@@ -1,9 +1,11 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Compte index{% endblock %}
+{% extends 'admindash/index.html.twig' %}
 
 {% block body %}
-    <h1>Compte index</h1>
+
+ <h1>Compte index</h1>
+     <main id="main" class="main">
+
 
     <table class="table">
         <thead>
@@ -38,4 +40,6 @@
     </table>
 
     <a href="{{ path('app_compte_new') }}">Create new</a>
+    </main>
+
 {% endblock %}
