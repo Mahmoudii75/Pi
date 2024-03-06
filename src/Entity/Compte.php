@@ -18,6 +18,7 @@ class Compte
 
     #[ORM\Column(length: 255, unique:true)]
     #[assert\Length(min:12,minMessage:"Au minimum 12 caractères")]
+    
     private ?string $numC = null;
 
     #[ORM\Column(length: 255)]

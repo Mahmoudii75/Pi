@@ -42,4 +42,64 @@
     <a href="{{ path('app_compte_new') }}">Create new</a>
     </main>
 
+<br><br>
+<section id="portfolio" class="portfolio">
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Comptes</h2>
+    </div>
+
+    <div class="container">
+        <div class="text-center mt-3">
+            <div class="mb-3">
+                <input type="text" id="searchInput" class="form-control" placeholder="Search by numéro compte">
+            </div>
+        </div>
+
+        <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+            {% for compte in comptes %}
+                <div class="col-lg-4 col-md-6 portfolio-item">
+                    <div class="card" style="height: 250px;">
+                        <div class="text-center mt-3" style="height: 150px;">
+                            <h5 class="text-center">{{ compte.numC }}</h5>
+                            <p>Status: {{ compte.statutC }}</p>
+                            <p>Solde: {{ compte.solde }}</p>
+                            <p>Date d'ouverture: {{ compte.dateouverture ? compte.dateouverture|date('Y-m-d H:i:s') : ''}}</p>
+                            <a href="{{ path('app_compte_show', {'id': compte.id}) }}" class="btn btn-primary btn-sm" style="width: 100px; display: block; margin: 0 auto;">Read more</a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <p>No comptes available</p>
+            {% endfor %}
+        </div>
+
+    <br><br><br>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the filter buttons
+        const filterButtons = document.querySelectorAll('.portfolio-filters li');
+
+        // Get the compte items
+        const compteItems = document.querySelectorAll('.portfolio-item');
+
+        // Add event listener for search input
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.trim().toLowerCase();
+            compteItems.forEach(function(item) {
+                const numC = item.querySelector('h5').textContent.trim().toLowerCase();
+                if (numC.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+                
+            });
+        });
+    });
+</script>
+
 {% endblock %}
+
