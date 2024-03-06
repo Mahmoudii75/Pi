@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240218154944 extends AbstractMigration
+final class Version20240306092907 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,16 +20,12 @@ final class Version20240218154944 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE carte ADD compte_id INT DEFAULT NULL');
-        $this->addSql('ALTER TABLE carte ADD CONSTRAINT FK_BAD4FFFDF2C56620 FOREIGN KEY (compte_id) REFERENCES compte (id)');
-        $this->addSql('CREATE INDEX IDX_BAD4FFFDF2C56620 ON carte (compte_id)');
+        $this->addSql('CREATE TABLE contact (id INT AUTO_INCREMENT NOT NULL, full_name VARCHAR(50) DEFAULT NULL, email VARCHAR(180) NOT NULL, subject VARCHAR(100) DEFAULT NULL, message LONGTEXT NOT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE carte DROP FOREIGN KEY FK_BAD4FFFDF2C56620');
-        $this->addSql('DROP INDEX IDX_BAD4FFFDF2C56620 ON carte');
-        $this->addSql('ALTER TABLE carte DROP compte_id');
+        $this->addSql('DROP TABLE contact');
     }
 }
